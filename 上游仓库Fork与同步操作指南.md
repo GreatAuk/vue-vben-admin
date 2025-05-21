@@ -1,3 +1,5 @@
+# 上游仓库 Fork 与同步 操作指南
+
 ## 1. Fork 原仓库
 在 GitHub 界面点击原仓库右上角的 Fork，生成你自己的仓库副本（如 yourusername/A）。
 
@@ -35,7 +37,7 @@ git checkout -b custom-feature
 
 ```bash
 git add .
-git commit -m "添加自定义内容"
+git commit -m "feat: 添加自定义内容"
 git push origin custom-feature
 ```
 
@@ -91,7 +93,7 @@ git push -f origin custom-feature
 ## 8. 定期重复步骤 6-7
 每次原仓库有更新时，重复拉取、合并到主分支，再合并到你的开发分支。
 
-关键命令总结
+**关键命令总结**
 | 操作 | 命令 |
 |------|------|
 | 添加上游仓库 | `git remote add upstream <原仓库URL>` |
@@ -102,20 +104,20 @@ git push -f origin custom-feature
 **注意事项**
 1. 分支策略
 
-  * 主分支（main）仅用于同步上游更新。
+    * 主分支（main）仅用于同步上游更新。
 
-  * 自定义内容在独立分支（如 custom-feature）开发。
+    * 自定义内容在独立分支（如 custom-feature）开发。
 
 2. 冲突处理
 
-  * 合并时优先解决冲突，避免直接覆盖代码。
+    * 合并时优先解决冲突，避免直接覆盖代码。
 
 3. 强制推送
 
-  * 使用 git push -f 仅在私有分支安全，公共分支慎用。
+    * 使用 git push -f 仅在私有分支安全，公共分支慎用。
 
 4. 自动化同步
 
-  * 可通过 GitHub Actions 定期自动同步上游更新（需编写 workflow 文件）。
+    * 可通过 GitHub Actions 定期自动同步上游更新（需编写 workflow 文件）。
 
 通过以上步骤，你可以在保留自定义内容的同时，持续获取原仓库的更新。
