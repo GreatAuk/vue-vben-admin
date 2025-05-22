@@ -58,7 +58,8 @@
     "test:e2e": "turbo run test:e2e",
     "update:deps": "npx taze -r -w",
     "version": "pnpm exec changeset version && pnpm install --no-frozen-lockfile",
-    "catalog": "pnpx codemod pnpm/catalog"
+    "catalog": "pnpx codemod pnpm/catalog",
+    "openapi": "pnpm -F @vben/api run openapi_"
   },
   "devDependencies": {
     "@changesets/changelog-github": "catalog:",
@@ -86,6 +87,7 @@
     "playwright": "catalog:",
     "rimraf": "catalog:",
     "tailwindcss": "catalog:",
+    "tsx": "^4.19.4",
     "turbo": "catalog:",
     "typescript": "catalog:",
     "unbuild": "catalog:",
