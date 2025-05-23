@@ -5,6 +5,9 @@ import { setupRequestFn } from '@vben/api';
 import { registerLoadingDirective } from '@vben/common-ui';
 import { preferences } from '@vben/preferences';
 import { initStores } from '@vben/stores';
+// eslint-disable-next-line perfectionist/sort-imports
+import '@sp/pc-ui/es/style.css';
+// eslint-disable-next-line perfectionist/sort-imports
 import '@vben/styles';
 import '@vben/styles/ele';
 
@@ -17,8 +20,6 @@ import { $t, setupI18n } from '#/locales';
 import { initComponentAdapter } from './adapter/component';
 import App from './app.vue';
 import { router } from './router';
-
-import '@sp/pc-ui/es/style.css';
 
 async function bootstrap(namespace: string) {
   // 初始化组件适配器
