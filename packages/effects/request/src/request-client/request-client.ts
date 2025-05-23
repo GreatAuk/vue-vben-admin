@@ -61,6 +61,7 @@ class RequestClient {
       responseReturn: 'raw',
       // 默认超时时间
       timeout: 10_000,
+      errorMessageMode: 'message',
     };
     const { ...axiosConfig } = options;
     const requestConfig = merge(axiosConfig, defaultConfig);

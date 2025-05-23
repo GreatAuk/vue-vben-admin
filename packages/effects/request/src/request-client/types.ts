@@ -5,11 +5,16 @@ import type {
   InternalAxiosRequestConfig,
 } from 'axios';
 
+type ErrorMessageMode = 'message' | 'modal' | 'none';
+
 type ExtendOptions<T = any> = {
   /**
-   * 是否隐藏错误信息提示，默认是 false， 只要接口提示错误，就提示错误信息（这个提示需要开发自己定义   client.addResponseInterceptor(errorMessageResponseInterceptor（...））
+   * Error message prompt type, 默认是 'message'。这个提示 ui 需要开发自己定义   client.addResponseInterceptor(errorMessageResponseInterceptor（...））
+   * - message: 使用 message 提示错误信息, 如 Ele Plus 或 antdv 的 message.error
+   * - modal: 使用 modal 提示错误信息, 如 antdv 的 Modal.error
+   * - none: 不提示错误信息
    */
-  hideErrorMsg?: boolean;
+  errorMessageMode?: ErrorMessageMode;
   /**
    * 参数序列化方式。预置的有
    * - brackets: ids[]=1&ids[]=2&ids[]=3
