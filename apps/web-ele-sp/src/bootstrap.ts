@@ -18,6 +18,8 @@ import { initComponentAdapter } from './adapter/component';
 import App from './app.vue';
 import { router } from './router';
 
+import '@sp/pc-ui/es/style.css';
+
 async function bootstrap(namespace: string) {
   // 初始化组件适配器
   await initComponentAdapter();

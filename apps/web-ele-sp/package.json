@@ -26,6 +26,7 @@
     "#/*": "./src/*"
   },
   "dependencies": {
+    "@sp/pc-ui": "^0.2.30",
     "@vben/access": "workspace:*",
     "@vben/api": "workspace:*",
     "@vben/common-ui": "workspace:*",
