@@ -3,7 +3,6 @@
  */
 import type { RequestClientOptions } from '@vben/request';
 
-import { useAppConfig } from '@vben/hooks';
 import { preferences } from '@vben/preferences';
 import {
   authenticateResponseInterceptor,
@@ -19,7 +18,8 @@ import { useAuthStore } from '#/store';
 
 import { refreshTokenApi } from './core';
 
-const { apiURL } = useAppConfig(import.meta.env, import.meta.env.PROD);
+// const { apiURL } = useAppConfig(import.meta.env, import.meta.env.PROD);
+const apiURL = 'https://domain';
 
 function createRequestClient(baseURL: string, options?: RequestClientOptions) {
   const client = new RequestClient({
@@ -74,9 +74,9 @@ function createRequestClient(baseURL: string, options?: RequestClientOptions) {
   // 处理返回的响应数据格式
   client.addResponseInterceptor(
     defaultResponseInterceptor({
-      codeField: 'code',
-      dataField: 'data',
-      successCode: 0,
+      codeField: 'resultCode',
+      successCode: 'SUCCESS',
+      dataField: 'item', // TODO 需要根据实际情况进行调整
     }),
   );
 
@@ -99,11 +99,16 @@ function createRequestClient(baseURL: string, options?: RequestClientOptions) {
         return;
       }
       // 这里可以根据业务进行定制,你可以拿到 error 内的信息进行定制化处理，根据不同的 code 做不同的提示，而不是直接使用 message.error 提示 msg
-      // 当前mock接口返回的错误字段是 error 或者 message
+      // 当前后端接口约定，返回的错误字段是 errorCode 和 errorCodeDes
       const responseData = error?.response?.data ?? {};
-      const errorMessage = responseData?.error ?? responseData?.message ?? '';
+      const errorMessage =
+        responseData?.errorCodeDes || responseData?.errorCode;
       // 如果没有错误信息，则会根据状态码进行提示
-      ElMessage.error(errorMessage || msg);
+      ElMessage({
+        message: errorMessage || msg,
+        type: 'error',
+        plain: true,
+      });
     }),
   );
 
@@ -111,7 +116,7 @@ function createRequestClient(baseURL: string, options?: RequestClientOptions) {
 }
 
 export const requestClient = createRequestClient(apiURL, {
-  responseReturn: 'data',
+  responseReturn: 'body',
 });
 
 export const request = requestClient.request.bind(requestClient);

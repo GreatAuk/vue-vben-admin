@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@vben/access": "workspace:*",
+    "@vben/api": "workspace:*",
     "@vben/common-ui": "workspace:*",
     "@vben/constants": "workspace:*",
     "@vben/hooks": "workspace:*",

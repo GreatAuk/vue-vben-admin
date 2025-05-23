@@ -2,9 +2,11 @@ import { cancel, intro, isCancel, multiselect } from '@clack/prompts';
 
 import { generateService_bff } from './bff.service';
 
+/** 服务函数 map */
 const serverNameMap = {
   generateService_bff,
 };
+/** 服务描述 map */
 const serverDescMap: Record<string, string> = {
   generateService_bff: '网关 bff',
 };
@@ -14,7 +16,6 @@ void (async function () {
 
   const answers = (await multiselect({
     message: '请选择要生成的 service',
-    // options: [{ value: 'eslint', label: 'ESLint', hint: 'recommended' }],
     options: Object.keys(serverNameMap).map((name) => ({
       value: name,
       label: name,

@@ -29,6 +29,14 @@ const routes: RouteRecordRaw[] = [
         path: '/demos/form',
         component: () => import('#/views/demos/form/basic.vue'),
       },
+      {
+        meta: {
+          title: '接口调用示例',
+        },
+        name: 'ApiDemos',
+        path: '/demos/api',
+        component: () => import('#/views/demos/api/index.vue'),
+      },
     ],
   },
 ];

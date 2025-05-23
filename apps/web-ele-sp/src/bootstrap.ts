@@ -1,6 +1,7 @@
 import { createApp, watchEffect } from 'vue';
 
 import { registerAccessDirective } from '@vben/access';
+import { setupRequestFn } from '@vben/api';
 import { registerLoadingDirective } from '@vben/common-ui';
 import { preferences } from '@vben/preferences';
 import { initStores } from '@vben/stores';
@@ -10,6 +11,7 @@ import '@vben/styles/ele';
 import { useTitle } from '@vueuse/core';
 import { ElLoading } from 'element-plus';
 
+import { request as requestDefault } from '#/api/requestDefault';
 import { $t, setupI18n } from '#/locales';
 
 import { initComponentAdapter } from './adapter/component';
@@ -66,6 +68,12 @@ async function bootstrap(namespace: string) {
         (routeTitle ? `${$t(routeTitle)} - ` : '') + preferences.app.name;
       useTitle(pageTitle);
     }
+  });
+
+  // setupRequestFn 要在 pinia 初始化之后，否则会报错
+  setupRequestFn({
+    // @ts-expect-error 估计是因为两个项目的 tsconfig 配置不一样，导致同样的类型，赋值反而提示类型不匹配
+    requestDefault,
   });
 
   app.mount('#app');
