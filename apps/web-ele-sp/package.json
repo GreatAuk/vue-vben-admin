@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@sp/pc-ui": "^0.2.30",
+    "@utopia-utils/core": "^0.3.29",
     "@vben/access": "workspace:*",
     "@vben/api": "workspace:*",
     "@vben/common-ui": "workspace:*",
